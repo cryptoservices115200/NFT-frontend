@@ -1,5 +1,6 @@
 @import "./assets/styles/header.css";
 @import "./assets/styles/button.css";
+@import "./assets/styles/text.css";
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
@@ -104,7 +105,7 @@ p.text-sm {
 }
 
 .section-pad-top {
-  padding-top: 160px;
+  padding-top: 104px;
 }
 
 .rounded-20 {
@@ -129,6 +130,12 @@ p.text-sm {
 #home {
   display: flex;
   align-items: center;
+}
+
+
+.mint-container {
+  margin: 1em;
+  height: 50px;
 }
 
 @media (min-width: 768px) {
@@ -208,5 +215,17 @@ p.text-sm {
   .rounded-bottom-20 {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+  }
+
+  .mint-container {
+    text-align: center;
+  }
+
+  .mint-btn {
+    margin: 0;
+  }
+
+  .mint-container * {
+    margin: 0.3em 0;
   }
 }

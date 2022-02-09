@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Web3ReactProvider } from "@web3-react/core";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 import AOS from "aos";
@@ -14,11 +15,15 @@ import Mint from "./pages/Mint";
 import About from "./pages/About";
 import Roadmap from "./pages/Roadmap";
 import reportWebVitals from "./reportWebVitals";
+import getLibrary from './hooks/getLibrary';
 
 AOS.init();
 
 ReactDOM.render(
+  
   <React.StrictMode>
+    <Web3ReactProvider getLibrary={getLibrary}>
+
     <Router>
       <Layout>
         <Switch>
@@ -30,11 +35,9 @@ ReactDOM.render(
         </Switch>
       </Layout>
     </Router>
+    </Web3ReactProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

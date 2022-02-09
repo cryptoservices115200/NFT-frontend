@@ -8,6 +8,18 @@
   border: 1px solid var(--primary-color);
 }
 
+.tertiary-btn {
+  background: var(--primary-color);
+  border: 1px solid var(--background-color-1);
+}
+
+.mint-btn {
+  border: 1px wheat solid;
+  color:antiquewhite;
+  padding: 0.1em 0.9em;
+  margin-left: 2em;
+}
+
 button {
   outline: none;
   cursor: pointer;
