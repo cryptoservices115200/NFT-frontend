@@ -5,18 +5,21 @@ interface TextProps {
   cssClasses?: string[];
   background?: string;
   children?: React.ReactNode;
+  onChange?: (value: string) => void;
 }
 
-const Text = ({ styles, cssClasses, background, children }: TextProps) => {
+const Text = ({ styles, cssClasses, background, onChange }: TextProps) => {
   return (
     <input
-        type = "text"
-      
-      className={cssClasses ? cssClasses.join(" ") : ""}
-      style={{
-        ...styles,
-        background: background,
-      }}
+        type = "number"
+        onChange={(e) => {
+            if (onChange) onChange(e.target.value)
+        }}
+        className={cssClasses ? cssClasses.join(" ") : ""}
+        style={{
+            ...styles,
+            background: background,
+        }}
     />
   );
 };
