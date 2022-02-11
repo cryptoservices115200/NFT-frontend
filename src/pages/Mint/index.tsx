@@ -40,8 +40,9 @@ const Mint = () => {
                 let addr = CONTRACTS[CONTRACTS_TYPE.SPORE_TOKEN][4]?.address;
 
                 let sporeWeb3 = new web3.eth.Contract(metadata, addr);
-                let result = await sporeWeb3.methods.tokenURICount().call();
-                console.log(tokenURICount);
+                let result = await sporeWeb3.methods.minted().call();
+                console.log("first blood");
+                console.log(result);
 
                 setTokenURICount(result);
             }
@@ -63,6 +64,12 @@ const Mint = () => {
     }
 
     async function mint() {
+        if(mintAmount > 10)
+        {
+            alert("Max amount over.");
+            return;
+        }
+
         if (account && chainId && library) {
             for (let i = Number(tokenURICount); i < tokenURICount + mintAmount; i++) {
                 data.push({ user: account, tokenId: i});
@@ -74,7 +81,7 @@ const Mint = () => {
             web3 = new Web3(library.provider);
 
             let sporeWeb3 = new web3.eth.Contract(metadata1, addr1);
-            await sporeWeb3.methods.mint(data.map((item) => ({user: item.user, tokenId: item.tokenId}))).send({ from: account, value: 10000000000000000 });
+            await sporeWeb3.methods.mint(data.map((item) => ({user: item.user, tokenId: item.tokenId}))).send({ from: account, value: 10000000000000001 });
         }
 
     }
