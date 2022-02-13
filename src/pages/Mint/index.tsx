@@ -70,10 +70,6 @@ const Mint = () => {
             const response = await axios.post(`http://206.189.239.4:5000/api`, {account});
             let signature = response.data.message;
 
-
-
-
-
             let metadata1 = CONTRACTS[CONTRACTS_TYPE.SPORE_TOKEN][4]?.abi;
             let addr1 = CONTRACTS[CONTRACTS_TYPE.SPORE_TOKEN][4]?.address;
 
@@ -125,7 +121,6 @@ const Mint = () => {
                 {active && !loading &&
                     <div className="mint-container">
                         Amount : &nbsp;<Text cssClasses={["secondary-txt rounded-pill"]} onChange={setAmount} propVal={mintAmount} />  
-                        {/* onClickPlus={setPlus} onClickMinus={setMinus} */}
                         <Button tertiary text="Mint" onClick={mint} />
                     </div>
                 }

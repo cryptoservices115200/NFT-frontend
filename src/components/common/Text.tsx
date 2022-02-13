@@ -21,8 +21,8 @@ const Text = ({ styles, cssClasses, background, onChange, propVal }: TextProps) 
   {
     let value = $("#mintAmount").val();
     value = Number(value) + 1;
+    if(value < 11)
     $("#mintAmount").val(value);
-    
     if (onChange) onChange(String(value));
   }
 
@@ -30,7 +30,8 @@ const Text = ({ styles, cssClasses, background, onChange, propVal }: TextProps) 
   {
     let value = $("#mintAmount").val();
     value = Number(value) - 1;
-    $("#mintAmount").val(value);
+    if(value > 0)
+      $("#mintAmount").val(value);
 
     if (onChange) onChange(String(value));
   }
@@ -46,13 +47,16 @@ const Text = ({ styles, cssClasses, background, onChange, propVal }: TextProps) 
           id = "mintAmount"
           type = "number"
           // value = {propVal}
-          onChange={(e) => {
-              if (onChange) onChange(e.target.value)
-          }}
+          // onChange={(e) => {
+          //     if (onChange) onChange(e.target.value)
+          // }}
+          readOnly
+          
           className={cssClasses ? cssClasses.join(" ") : ""}
           style={{
               ...styles,
               background: background,
+              textAlign:'center'
           }}
       />
       <button
