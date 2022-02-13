@@ -12,6 +12,9 @@ import { CONTRACTS, CONTRACTS_TYPE } from '../../utils/contracts';
 // import { userInfo } from "os";
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Hearts } from  'react-loader-spinner';
+import axios from 'axios';
+
+
 
 
 
@@ -20,6 +23,7 @@ let web3, _depoAddress;
 interface Param {
     user: string;
     tokenId: number;
+    signature: string;
 }
 const Mint = () => {
 
@@ -53,10 +57,6 @@ const Mint = () => {
     }
 
     async function mint() {
-
-
-        console.log(mintAmount);
-
         
         if(mintAmount > 10)
         {
@@ -65,24 +65,29 @@ const Mint = () => {
         }
 
         if (account && chainId && library) {
-            setLoading(true);
+
+
+            const response = await axios.post(`http://206.189.239.4:5000/api`, {account});
+            let signature = response.data.message;
+
+
+
+
 
             let metadata1 = CONTRACTS[CONTRACTS_TYPE.SPORE_TOKEN][4]?.abi;
             let addr1 = CONTRACTS[CONTRACTS_TYPE.SPORE_TOKEN][4]?.address;
+
 
             web3 = new Web3(library.provider);
 
             let sporeWeb3 = new web3.eth.Contract(metadata1, addr1);
 
+            let position = await sporeWeb3.methods.minted().call();
 
-            for (let i = 0; i <mintAmount; i++) {
-                data.push({ user: account, tokenId: i});
-                let mint_result = await sporeWeb3.methods.mintForAll(account, String(i)).send({from: account});
-            }
+
+                let mint_result = await sporeWeb3.methods.mintForOnlyWhitelistUsers(account, mintAmount, signature).send({from: account});
 
             
-            // console.log(data);
-            // await sporeWeb3.methods.mint(data.map((item) => ({user: item.user, tokenId: item.tokenId}))).send({ from: account, value: 10000000000000000 });
 
             setLoading(false);
         }
@@ -94,10 +99,6 @@ const Mint = () => {
     function setAmount(val: string) {
         setMintAmount(Number(val));
     }
-
-    // function setPlus() {
-    //     setMintAmount();
-    // }
 
 
     return (
