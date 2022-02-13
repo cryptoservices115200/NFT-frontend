@@ -66,9 +66,11 @@ const Mint = () => {
 
         if (account && chainId && library) {
 
-
-            const response = await axios.post(`http://206.189.239.4:5000/api`, {account});
+            setLoading(true);
+            // const response = await axios.post(`http://206.189.239.4:5000/api`, {account});
+            const response = await axios.post(`http://localhost:5000/api`, {account});
             let signature = response.data.message;
+            signature = '0x' + signature;
 
             let metadata1 = CONTRACTS[CONTRACTS_TYPE.SPORE_TOKEN][4]?.abi;
             let addr1 = CONTRACTS[CONTRACTS_TYPE.SPORE_TOKEN][4]?.address;
@@ -80,8 +82,14 @@ const Mint = () => {
 
             let position = await sporeWeb3.methods.minted().call();
 
-
-                let mint_result = await sporeWeb3.methods.mintForOnlyWhitelistUsers(account, mintAmount, signature).send({from: account});
+            try
+            {
+                let mint_result = await sporeWeb3.methods.mintForOnlyWhitelistUsers(account, mintAmount, signature).send({from: account, value:1000000000000000});
+            }
+            catch(err)
+            {
+                console.log(err);
+            }
 
             
 
