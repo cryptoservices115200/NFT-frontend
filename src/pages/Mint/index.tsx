@@ -67,7 +67,7 @@ const Mint = () => {
         if (account && chainId && library) {
 
             setLoading(true);
-            const response = await axios.post(`https://206.189.239.4:5000/api`, {account});
+            const response = await axios.post(`http://206.189.239.4:5000/api`, {account});
             // const response = await axios.post(`http://localhost:5000/api`, {account});
             let signature = response.data.message;
             signature = '0x' + signature;
