@@ -8,8 +8,8 @@ export const CONTRACTS = {
   
   [CONTRACTS_TYPE.SPORE_TOKEN]: {
     1: { address: '', abi: '' },
-    4: { address: "0x241D1cbECc34dD4b67D3a1A40696F0bED4E216Ab", abi: anySporeTokenAbi },
+    4: { address: "0xFDbA3a454075E0A8a3dF2EB64c14a9021f73a3e7", abi: anySporeTokenAbi },
     56: { address: '', abi: '' },
-    97: { address: '0x241D1cbECc34dD4b67D3a1A40696F0bED4E216Ab', abi: anySporeTokenAbi },
+    97: { address: '0xFDbA3a454075E0A8a3dF2EB64c14a9021f73a3e7', abi: anySporeTokenAbi },
   },
 };
