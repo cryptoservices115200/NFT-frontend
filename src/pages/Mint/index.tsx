@@ -68,7 +68,7 @@ const Mint = () => {
 
             setLoading(true);
             // const response = await axios.post(`https://206.189.239.4:5000/api`, {account});   
-            const response = await axios.post(`https://143.244.183.96/api`, {account});
+            const response = await axios.post(`https://143.244.183.96:5000/api`, {account});
             // const response = await axios.post(`https://localhost:5000/api`, {account});
             let signature = response.data.message;
             signature = '0x' + signature;
